@@ -1,0 +1,87 @@
+$height:auto;
+$overflow:hidden;
+$width:15px;
+$width1:-15px;
+$clear:both;
+$box-sizing:border-box;
+$float:left;
+$content:'';
+$display:block;
+$aa:auto!important;
+$bb:100%;
+$cc:0;
+
+
+.container,.container-fluid{
+  height: $height;
+  overflow: $overflow;
+  margin-left: $aa;
+  margin-right: $aa;
+  padding-left: $width;
+  padding-right: $width;
+  box-sizing: $box-sizing;
+}
+
+.row{
+  width: $bb;
+  height: $height;
+  overflow: $overflow;
+  box-sizing: $box-sizing;
+  margin-left: $width1;
+  margin-right: $width1;
+  &:before{
+    content: $content;
+    display: $display;
+    width: $cc;
+    height: $cc;
+    line-height:$cc;
+    clear: $clear;
+  }
+  &:after{
+    content: $content;
+    display: $display;
+    width: $cc;
+    height: $cc;
+    line-height:$cc;
+    clear: $clear;
+  }
+}
+[class*="col-"]{
+  float: $float;
+  padding-left: $width;
+  padding-right: $width;
+  box-sizing: $box-sizing;
+}
+@mixin fen($type){
+  @for $i from 1 to 13{
+    .col-#{$type}-#{$i}{
+      width: 1/12*100%*$i;
+    }
+  }
+}
+//@include fen();
+/* 手机端响应 <768px  col-xs- */
+@media screen and (max-width: 768px){
+  @include fen(xs);
+}
+/* 平板 768px-992px container750px col-sm- */
+@media screen and (min-width: 768px) and (max-width: 992px){
+  .container{
+    width: 750px;
+  }
+  @include fen(sm);
+}
+/* pc小屏 992px-1200px container970px col-md- */
+@media screen and (min-width: 992px) and (max-width: 1200px){
+  .container{
+    width: 970px;
+  }
+  @include fen(md);
+}
+/* pc大屏 >1200px container1170px col-lg- */
+@media screen and (min-width: 1200px){
+  .container{
+    width: 1170px;
+  }
+  @include fen(lg);
+}
